@@ -17,4 +17,11 @@ describe Piece do
       expect(piece.type).to eql("pawn")
     end
   end
+
+  #describe "#legal_move?" do
+  #  it "returns true if the move is legal" do
+  #    piece = Piece.new(:white, :pawn, [1, 0])
+  #    expect(piece.legal_move?(1, 1)).to eql(true)
+  #  end
+  #end
 end
