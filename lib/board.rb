@@ -25,7 +25,14 @@ class Board
   end
 
   def move(initial_position, new_position)
-    @row[initial_position[0]][initial_position[1]], @row[new_position[0]][new_position[1]] = @row[new_position[0]][new_position[1]], @row[initial_position[0]][initial_position[1]]
+    initial = @row[initial_position[0]][initial_position[1]]
+    final = @row[new_position[0]][new_position[1]]
+
+    if initial.legal_move?(new_position)
+      initial.position = new_position
+      @row[initial_position[0]][initial_position[1]], @row[new_position[0]][new_position[1]] = final, initial
+    end
+    show_board
   end
 
   private

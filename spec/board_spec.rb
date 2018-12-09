@@ -23,5 +23,12 @@ describe Board do
       board.move([1,0], [2,0])
       expect(board.row[2][0].type).to eql(:pawn)
     end
+
+    it "only moves pieces in legal directions and distances" do
+      board = Board.new
+      board.populate
+      board.move([1,0], [3,0])
+      expect(board.row[3][0]).to eql(nil)
+    end
   end
 end
