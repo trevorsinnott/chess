@@ -9,6 +9,7 @@ class Board
 
   def populate
     type_order = "rook, knight, bishop, queen, king, bishop, knight, rook".split(", ")
+    type_order.map!{ |type| type.to_sym }
     @row[0] = @row[0].each_with_index.map do |piece, index|
       piece = Piece.new(:white, type_order[index], [0, index])
     end
@@ -21,6 +22,25 @@ class Board
     @row[7] = @row[7].each_with_index.map do |piece, index|
       piece = Piece.new(:black, type_order[index], [0, index])
     end
-    puts @row.to_s
+  end
+
+  def move(initial_position, new_position)
+    @row[initial_position[0]][initial_position[1]], @row[new_position[0]][new_position[1]] = @row[new_position[0]][new_position[1]], @row[initial_position[0]][initial_position[1]]
+  end
+
+  private
+
+  def show_board
+    @row.reverse.each do |column|
+      types = []
+      column.each do |piece|
+        if piece
+          types << piece.type.to_s + piece.color.to_s
+        else
+          types << piece
+        end
+      end
+      puts types.to_s
+    end
   end
 end

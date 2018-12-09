@@ -12,7 +12,16 @@ describe Board do
     it "populates the board with all the pieces in starting position" do
       board = Board.new
       board.populate
-      expect(board.row[0][0].type).to eql("rook")
+      expect(board.row[0][0].type).to eql(:rook)
+    end
+  end
+
+  describe "#move" do
+    it "moves piece from initial position to new position" do
+      board = Board.new
+      board.populate
+      board.move([1,0], [2,0])
+      expect(board.row[2][0].type).to eql(:pawn)
     end
   end
 end
